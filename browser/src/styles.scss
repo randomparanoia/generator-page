@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 15px;
+  row-gap: 15px;
+  padding: 15px;
+
+  .g2 {
+    text-align: center;
+  }
+
+  .g3 {
+    text-align: right;
+  }
+}
+
+.code-box {
+  display: block;
+  width: 200px;
+  margin: auto;
+  text-align: center;
+}
+
+#grid {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 1px;
+  text-transform: lowercase;
+
+  .cell {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+
+.code-box {
+  text-transform: uppercase;
+  border: 1px solid #ccc;
+  padding: 15px 10px;
+}
+
+button {
+  padding: 5px 15px;
+  border-radius: 10px;
+  border-color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+  }
+}
+
+input {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+label {
+  font-weight: 700;
+  font-size: 0.9rem;
+}

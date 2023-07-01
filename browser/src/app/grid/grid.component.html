@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="g1">
+    <label for="character">CHARACTER</label><br>
+    <input id="character" type="text" placeholder="Character" [(ngModel)]="character" pattern="[a-Z]" maxlength="1">
+  </div>
+  <div class="g2">
+    New Code in: 00:0{{ timer }}
+  </div>
+  <div class="g3">
+    <button type="button" (click)="startGenerator()">GENERATE 2D GRID</button>
+  </div>
+</div>
+<div class="container" id="grid"></div>
+<div class="code-box">
+  your code: <strong>{{code}}</strong>
+</div>
