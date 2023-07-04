@@ -1,7 +1,7 @@
 # generator-page
 ### Requirements:
 - Node.js 12+ (Using Angular 13 which required at least Node.js 12+);
-- Yarn or NPM package manager.
+- NPM package manager.
 
 ### Description
 App consists of two folders: Server + Browser.
@@ -18,12 +18,12 @@ Server is responsible for creating the codes consumed by the Browser app. It als
 
 2 - Run Browser app (starts listening on port 4200):
 ```shell
-    npm run dev or yarn dev
+    npm run dev
 ```
 
 3 - Run Server app (starts listening on port 3000):
 ```shell
-    npm run dev or yarn dev
+    npm run dev
 ```
 
 4 - Go to http://localhost:4200 and interact with the Browser app Frontend.
