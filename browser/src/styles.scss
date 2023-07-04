@@ -1,6 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   font-family: "DM Sans", sans-serif;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 15px;
+  ul {
+    margin-left: -25px;
+    list-style: none;
+    li {
+      padding: 0 5px;
+      float: left;
+      text-align: center;
+      a {
+        transition: 0.2s;
+        color: #000;
+        text-decoration: none;
+        &:hover,
+        &.active {
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
 
 .container {
@@ -24,27 +52,46 @@ body {
   width: 200px;
   margin: auto;
   text-align: center;
+  overflow: hidden;
+  position: relative;
+  text-transform: uppercase;
+  border: 1px solid #ccc;
+  padding: 15px 10px;
 }
 
-#grid {
-  padding: 15px;
+.live-box {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  margin: auto;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  .bull {
+    font-size: 30px;
+    color: red;
+    margin-top: -10px;
+    padding-right: 5px;
+  }
+  div {
+    float: left;
+  }
+}
+
+[id^="grid"] {
+  padding: 10px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
   gap: 1px;
   text-transform: lowercase;
+  font-size: 0.9rem;
 
   .cell {
     border: 1px solid #ccc;
     text-align: center;
-    padding: 20px 0;
+    padding: 5px 0;
   }
-}
-
-.code-box {
-  text-transform: uppercase;
-  border: 1px solid #ccc;
-  padding: 15px 10px;
 }
 
 button {
@@ -70,4 +117,45 @@ input {
 label {
   font-weight: 700;
   font-size: 0.9rem;
+}
+.container {
+  h4 {
+    margin: 15px 5px 0 5px;
+  }
+  &.table {
+    grid-template-columns: auto;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      display: table;
+      border: 1px solid #ccc;
+      border-spacing: 0;
+      tr {
+        border-bottom: 1px solid #ddd;
+      }
+      td,
+      th {
+        border: 1px solid #dddddd;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+form {
+  display: flex;
+  justify-content: flex-start;
+
+  div {
+    padding: 5px;
+    button {
+      font-weight: 700;
+      &:before {
+        content: "\002B";
+        padding: 5px;
+      }
+      margin-top: 18px;
+      padding: 10px 15px;
+    }
+  }
 }

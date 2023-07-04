@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import axios from 'axios';
+import { ApiService } from '../services/api.service';
+import Utils from '../utils';
 
 @Component({
   selector: 'app-grid',
@@ -12,51 +13,57 @@ export class GridComponent implements OnInit {
   grid: any = [];
   code: string = '';
   status: boolean = false;
+  interval: boolean = false;
+  error = false;
+  disableInput = false;
 
-  ngOnInit() {}
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {}
+
+  inputError(char: any) {
+    this.error = char !== '' && char.match(/[a-zA-Z]/) === null;
+  }
+
+  onKey(event: any) {
+    this.inputError(event.target.value);
+    this.disableInput = true;
+    setInterval(() => {
+      this.disableInput = false;
+    }, 4000);
+  }
 
   // start generator on click
   startGenerator() {
-    this.createGrid();
-    this.countdownTimer();
+    if (this.interval) {
+      clearInterval(this.updateGrid());
+      this.interval = false;
+    } else {
+      this.createGrid();
+      setInterval(() => {
+        this.interval = true;
+        this.updateGrid();
+      }, 1000);
+    }
   }
 
   // Fetch and populate our random character grid
-  createGrid = async () => {
-    try {
-      const resp = await axios.get('http://localhost:3000/code', {
-        params: { character: this.character },
-      });
-      const gridContainer = document.getElementById('grid');
-      if (gridContainer !== null) {
-        gridContainer.innerHTML = '';
-
-        resp.data.grid.forEach((element: any) => {
-          element.forEach((letter: any) => {
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            cell.textContent = letter;
-            gridContainer.appendChild(cell);
-          });
-        });
-        this.code = resp.data.code;
-        this.status = true;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  createGrid() {
+    this.apiService.getCode({ character: this.character }).subscribe((data) => {
+      Utils.gridBuilder('grid', data.grid);
+      this.code = data.code;
+      this.status = true;
+    });
+  }
 
   // starts countdown timer intervals
-  countdownTimer(): any {
-    setInterval(() => {
-      let counter = this.timer;
-      counter--;
-      this.timer = counter < 0 ? 0 : counter;
-      if (counter < 0) {
-        this.timer = 2;
-        this.createGrid();
-      }
-    }, 1000);
+  updateGrid(): any {
+    let counter = this.timer;
+    counter--;
+    this.timer = counter < 0 ? 0 : counter;
+    if (counter < 0) {
+      this.timer = 2;
+      this.createGrid();
+    }
   }
 }

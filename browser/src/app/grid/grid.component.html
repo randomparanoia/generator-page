@@ -1,7 +1,10 @@
 <div class="container">
   <div class="g1">
     <label for="character">CHARACTER</label><br>
-    <input id="character" type="text" placeholder="Character" [(ngModel)]="character" pattern="[a-Z]" maxlength="1">
+    <input id="character" type="text" placeholder="Character" [(ngModel)]="character" pattern="[a-zA-Z]" maxlength="1"
+      (keyup)="onKey($event)" [disabled]="disableInput">
+    <br>
+    <small style="color:red" *ngIf="error">Max length is 1 and characters should match only alphabet letters</small>
   </div>
   <div class="g2">
     New Code in: 00:0{{ timer }}
@@ -11,6 +14,10 @@
   </div>
 </div>
 <div class="container" id="grid"></div>
+<div *ngIf="status" class="live-box">
+  <div class="bull">&bull;</div>
+  <div>LIVE</div>
+</div>
 <div class="code-box">
   your code: <strong>{{code}}</strong>
 </div>

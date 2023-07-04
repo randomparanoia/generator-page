@@ -1,0 +1,41 @@
+<div *ngIf="status" class="live-box">
+  <div class="bull">&bull;</div>
+  <div>LIVE</div>
+</div>
+<div class="code-box">
+  your code now: <strong>{{code}}</strong>
+</div>
+
+<div class="container">
+  <form [formGroup]="paymentsForm" (ngSubmit)="addPayment()">
+    <div>
+      <label for="name">Name</label><br>
+      <input type="text" id="name" formControlName="name"><br>
+      <small style="color:red" *ngIf="error && paymentsForm.value.name === ''">{{required}}</small>
+    </div>
+    <div>
+      <label for="amount">Amount</label><br>
+      <input type="number" formControlName="amount" min="0"><br>
+      <small style="color:red" *ngIf="error && paymentsForm.value.amount === ''">{{required}}</small>
+    </div>
+    <div>
+      <button type="button" (click)="addPayment()">Add</button>
+    </div>
+  </form>
+</div>
+
+<div class="container table">
+  <h4>Payment list</h4>
+  <table id="payments-table">
+    <thead>
+      <tr>
+        <th style="width:15%;text-align: left;">Name</th>
+        <th style="width:15%">Amount</th>
+        <th style="width:15%">Code</th>
+        <th style="width:55%">Grid</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
