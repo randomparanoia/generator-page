@@ -1,6 +1,6 @@
 # generator-page
 ### Requirements:
-- Node.js 12+ (Using Angular 13 which required at least Node.js 12+);
+- Node.js 12+ (Using Angular 13 which requires at least Node.js 12+);
 - NPM package manager.
 
 ### Description
