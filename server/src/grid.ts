@@ -1,10 +1,9 @@
-interface T {}
-
 class Grid {
   public constructor(private char: string, private charWeight: number = 20) {}
 
   /**
-   * define 10*10 grid Array with our values
+   * define 10*10 grid Array with our random values
+   * if character is given 20% of values will be populated on our grid array
    * @returns
    */
   generate() {
@@ -17,7 +16,7 @@ class Grid {
       grid.push(row);
     }
 
-    // Fill 20% of the grid occurrences with the provided character
+    // Validate char is present if so count occurrences an populate our grid with extra characters of the given character
     if (this.char !== "") {
       const totalOccurrences = 10 * 10;
       const targetOccurrences = Math.floor(
@@ -40,6 +39,11 @@ class Grid {
     return grid;
   }
 
+  /**
+   * calculate our code based on the seconds of the System Host time
+   * @param grid
+   * @returns
+   */
   calculateCode(grid: any) {
     const date = new Date();
     const seconds = ("0" + date.getSeconds()).slice(-2).split("");
@@ -51,10 +55,13 @@ class Grid {
     countChar1 = countChar1 > 9 ? Math.floor(countChar1 / 9) : countChar1;
     countChar2 = countChar2 > 9 ? Math.floor(countChar1 / 9) : countChar2;
 
-    return countChar1 + "" + countChar2;
+    return `${countChar1}${countChar2}`;
   }
 
-  private charOccurrences(char, grid) {
+  /**
+   *  char occurrences [x;y] coordinates style
+   */
+  private charOccurrences(char: any, grid: any) {
     let occurrences = 0;
 
     for (let x = 0; x < grid.length; x++) {
